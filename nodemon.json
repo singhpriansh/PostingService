@@ -1,0 +1,6 @@
+{
+    "env": {
+        "Mongo_atls_pss": "AllyoGpSUyncgkDM",
+        "Jwt_key": "qwerty"
+    }
+}

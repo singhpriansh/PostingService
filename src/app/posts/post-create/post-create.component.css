@@ -1,0 +1,22 @@
+.image-preview-adjust {
+    float: right;
+    height: 3rem;
+}
+
+.image-preview {
+    max-width: 22rem;
+    height: 10rem;
+}
+
+mat-form-field,
+textarea {
+    width: 100%;
+}
+
+mat-spinner {
+    margin: auto;
+}
+
+input[type="file"] {
+    visibility: hidden;
+}
