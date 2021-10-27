@@ -17,9 +17,8 @@ mongoose.connect("mongodb+srv://priyanshu:spvmfufVafB7xxV@cluster0.c7q1k.mongodb
     })
 ;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended : false }));
-app.use("/images", express.static(path.join("backend/images")));
+app.use(express.json());
+app.use(express.urlencoded({ extended : true }));
 
 app.use((req, res, next) => {
     res.setHeader(
@@ -37,6 +36,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use("/images", express.static(path.join("backend/images")));
 app.use("/api/posts", postsRoutes);
 app.use("/api/user", userauthRoutes);
 
