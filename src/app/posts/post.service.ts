@@ -57,8 +57,9 @@ export class PostService {
         postData.append("title", title);
         postData.append("content", content);
         postData.append("image", image, title);
+        console.log(postData);
         this.http
-            .post<{ message: string, post: Post }>( BACK_URL, postData)
+            .post<{ message: string, post: Post }>(BACK_URL, postData)
             .subscribe(responseData => {
                 // const post: Post = {
                 //     id: responseData.post.id,
