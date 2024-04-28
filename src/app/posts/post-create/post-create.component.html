@@ -6,7 +6,7 @@
                 type="text"
                 formControlName="title"
                 placeholder="Post Title">
-                <mat-error *ngIf="form.get('title').invalid">
+                <mat-error *ngIf="form.get('title')?.valid">
                     Please enter a post Title</mat-error>
         </mat-form-field>
         <div>
@@ -20,9 +20,9 @@
             <div class="image-preview-adjust">
                 <img class="image-preview" 
                 *ngIf="imagePreview !== '' && imagePreview
-                 && form.get('image').valid"
-                 [src]="imagePreview"
-                 [alt]="form.value.title">
+                && form.get('image')?.valid"
+                [src]="imagePreview"
+                [alt]="form.value.title">
             </div>
         </div>
         <mat-form-field>
@@ -32,7 +32,7 @@
                 formControlName="content"
                 placeholder="Post Content">
             </textarea>
-            <mat-error *ngIf="form.get('content').invalid">
+            <mat-error *ngIf="form.get('content')?.invalid">
                 Please enter some content
             </mat-error>
         </mat-form-field>

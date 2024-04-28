@@ -21,11 +21,11 @@ export class PostListComponent implements OnInit, OnDestroy{
   pageSizeOPtions = [1,2,5,10];
   isLoading = false;
   userIsAuthenticated = false;
-  userId: string;
-  private authStatusSub: Subscription;
-  private postsSub: Subscription;
+  userId: string | undefined;
+  private authStatusSub: Subscription | undefined;
+  // private postsSub: Subscription;
 
-  constructor(public postsService: PostService, private authService: AuthService ) {}
+  constructor(public postsService: PostService, private authService: AuthService, private postsSub: Subscription ) {}
 
   ngOnInit() {
     this.isLoading = true;

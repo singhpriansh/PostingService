@@ -3,7 +3,7 @@ import { Observable, Observer, of } from 'rxjs';
 
 export const mimeType = (control: AbstractControl): Promise<{[key: string]: any}> | Observable<{[key: string]: any}> => {
     if(typeof(control.value) === 'string'){
-        return of(null);
+        return of(["",""]);
     }
     const file = control.value as File;
     const fileReader = new FileReader();
@@ -32,7 +32,7 @@ export const mimeType = (control: AbstractControl): Promise<{[key: string]: any}
                     break;
             }
             if(isValid){
-                observer.next(null);
+                observer.next({ isvalidMimeType: false});
             }else{
                 observer.next({ isvalidMimeType: true });
             }

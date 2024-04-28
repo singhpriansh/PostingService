@@ -10,9 +10,9 @@ const BACK_URL = environment.apiUrls + "user/";
 @Injectable({providedIn: 'root'})
 export class AuthService {
     private isAuthenticated = false;
-    private token: string;
+    private token: string="";
     private tokenTimer: any;
-    private userId: string;
+    private userId: string="";
     private authStatusListener = new Subject<boolean>();
 
     constructor(private http: HttpClient, private router: Router) {}
@@ -84,17 +84,17 @@ export class AuthService {
         if (expiresIn > 0) {
             this.token = authInformation.token;
             this.isAuthenticated = true;
-            this.userId = authInformation.userId;
+            this.userId = authInformation.userId as string;
             this.setAuthTimer(expiresIn / 1000);
             this.authStatusListener.next(true);
         }
     }
 
     logoutUser() {
-        this.token = null;
+        this.token = "";
         this.isAuthenticated = false;
         this.authStatusListener.next(false);
-        this.userId = null;
+        this.userId = "";
         clearTimeout(this.tokenTimer);
         this.clearAuthData();
         this.router.navigate(['/']);

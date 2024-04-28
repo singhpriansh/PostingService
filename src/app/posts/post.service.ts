@@ -19,9 +19,10 @@ export class PostService {
     getPosts(postsPerPage: number, currentPage: number) {
         const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
         this.http
-            .get<{ message: string, posts: any, maxPosts: number }>(BACK_URL+queryParams)
+            .get<{ message: string, posts: any , maxPosts: number }>(BACK_URL+queryParams)
             .pipe(map(postData => {
-                return { posts: postData.posts.map(post => {
+                return { posts: postData.posts.map((post: 
+                    { _id: any; title: any; content: any; imagePath: any; creator: any; }) => {
                     return {
                         id: post._id,
                         title: post.title,
@@ -87,7 +88,7 @@ export class PostService {
                 title: title,
                 content: content,
                 imagePath: image,
-                creator: null
+                creator: ""
             };
         }
         this.http

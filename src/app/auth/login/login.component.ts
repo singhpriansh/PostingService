@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   isLoading = true;
-  private authStatusSub: Subscription;
+  private authStatusSub!: Subscription;
 
   constructor(public authService: AuthService){
     this.isLoading = false;

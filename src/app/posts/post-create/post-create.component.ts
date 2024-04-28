@@ -15,19 +15,19 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 
 export class PostCreateComponent implements OnInit, OnDestroy {
-    enteredtitle = "";
-    enteredcontent = "";
-    post: Post;
+    enteredTitle:String = "";
+    enteredContent = "";
+    post!: Post;
     isLoading = false;
-    form: FormGroup;
-    imagePreview: string | ArrayBuffer;
+    form!: FormGroup;
+    imagePreview: string | ArrayBuffer | null = "";
     private mode = 'create';
-    private postId: string;
-    private authStatusSub: Subscription;
+    private postId: string = "";
+    private authStatusSub!: Subscription;
 
     constructor(public postsService: PostService,
         public route: ActivatedRoute,
-        private authService: AuthService ) {}
+        private authService: AuthService) {}
 
     ngOnInit() {
         this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
@@ -50,8 +50,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         });
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
             if(paramMap.has('postId')){
-                this.mode = 'edit',
-                this.postId = paramMap.get('postId');
+                this.mode = 'edit';
+                this.postId = paramMap.get('postId') as string;
                 this.isLoading = true;
                 this.postsService.getPost(this.postId).subscribe(postData => {
                     this.isLoading = false;
@@ -74,9 +74,9 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     }
 
     onImagePicked(event: Event) {
-        const file = (event.target as HTMLInputElement).files[0];
+        const file = (event.target as HTMLInputElement).files![0];
         this.form.patchValue({image: file});
-        this.form.get("image").updateValueAndValidity();
+        this.form.get("image")!.updateValueAndValidity();
         const reader = new FileReader();
         reader.onload = () => {
             this.imagePreview = reader.result;

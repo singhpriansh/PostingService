@@ -32,6 +32,6 @@ import { AngularMaterialModule } from "./angular-material.module";
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorComponent]
+  // entryComponents: [ErrorComponent]
 })
 export class AppModule { }
